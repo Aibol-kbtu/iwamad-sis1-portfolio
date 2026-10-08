@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oralbekuly Aibol</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Oralbekuly Aibol</h1>
+        <p>IT Management Student</p>
+
+        <button id="theme-toggle" type="button">Dark/light</button>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+
+            <img  src="Aibol.jpeg" alt="Photo of Aibol" width="200">
+
+            <p>
+                Hello there! I am a third-year IT Management student at KBTU.
+                Let's talk about me I am from Ural west region of Kazakhstan.
+                19 years old boy who want's to became a businesman and help to develop our Kazakhstan on every side.
+                I belive in this course that help me understand frontend development to improve my skills.
+            </p>
+
+            <nav>
+                <a href="#about">About me</a> 
+                <a href="#project">Projects</a> 
+                <a href="#contact">Contact</a>
+            </nav>
+        </section>
+        <section id="project">
+            <h2>My path</h2>
+
+            <table >
+                <tr>
+                    <th>Project</th>
+                    <th>point</th>
+                    <th>Dedline</th>
+                </tr>
+
+                <tr>
+                    <td>Week 1</td>
+                    <td>...</td>
+                    <td>on time ✅</td>
+                </tr>
+
+                <tr>
+                    <td>Week 2</td>
+                    <td>86.67</td>
+                    <td>on time ✅</td>
+                </tr>
+
+                <tr>
+                    <td>Week 3</td>
+                    <td>76.67</td>
+                    <td>out of time ❌</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+
+            <p>
+                Email:
+                <a href="mailto:oralbekaibol1982@gmail.com">
+                    oralbekaibol1982@gmail.com
+                </a>
+            </p>
+
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+
+                <br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+
+                <br><br>
+
+                <label for="message">Message:</label>
+                <br>
+                <textarea id="message" name="message"></textarea>
+
+                <br><br>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Oralbekuly Aibol</p>
+    </footer>
+    <script>
+        const btn = document.getElementById('theme-toggle');
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+            document.documentElement.setAttribute('data-theme', saved);
+            }
+
+        btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        });
+    </script>
+</body>
+</html>
