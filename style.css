@@ -58,7 +58,10 @@ p {
 a {
   color: var(--accent);
 }
-
+.about {
+  display: grid;
+  gap: var(--space-2);
+}
 header,
 main,
 footer {
@@ -101,7 +104,12 @@ textarea {
   border: 1px solid var(--border);
   border-radius: var(--space-1);
 }
-
+.error {
+  min-height: 1.5em;
+  margin: var(--space-1) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--error);
+}
 label {
   font-size: var(--fs-sm);
   color: var(--muted);
@@ -111,7 +119,9 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-
+#form-status {
+  margin-top: var(--space-2);
+}
 th,
 td {
   padding: var(--space-1) var(--space-2);
@@ -126,6 +136,18 @@ th {
 nav {
   display: flex;
   justify-content: center;
-  gap: calc(var(--space-2) * 1.5);
+  gap: var(--space-2);
   margin-top: var(--space-3);
+}
+@media (min-width: 768px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .about {
+    grid-template-columns: 200px 1fr;
+    align-items: start;
+  }
 }

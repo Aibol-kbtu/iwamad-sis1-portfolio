@@ -14,21 +14,21 @@
         <p>IT Management Student</p>
 
         <button id="theme-toggle" type="button">Dark/light</button>
+        
     </header>
 
     <main>
         <section id="about">
             <h2>About Me</h2>
-
-            <img  src="Aibol.jpeg" alt="Photo of Aibol" width="200">
-
+            <div class="about">
+            <img  src="Aibol.jpeg" alt="Photo of Aibol" width="200" >
             <p>
                 Hello there! I am a third-year IT Management student at KBTU.
                 Let's talk about me I am from Ural west region of Kazakhstan.
                 19 years old boy who want's to became a businesman and help to develop our Kazakhstan on every side.
                 I belive in this course that help me understand frontend development to improve my skills.
             </p>
-
+            </div>
             <nav>
                 <a href="#about">About me</a> 
                 <a href="#project">Projects</a> 
@@ -42,7 +42,7 @@
                 <tr>
                     <th>Project</th>
                     <th>point</th>
-                    <th>Dedline</th>
+                    <th>Deadline</th>
                 </tr>
 
                 <tr>
@@ -75,24 +75,27 @@
                 </a>
             </p>
 
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
+            <form id="contact-form" novalidate>
+                <div class="field">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" >
+                    <p class="error" id="name-error"></p>
+                </div>
 
-                <br><br>
+                <div class="field">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" >
+                    <p class="error" id="email-error"></p>
+                </div>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-
-                <br><br>
-
-                <label for="message">Message:</label>
-                <br>
-                <textarea id="message" name="message"></textarea>
-
-                <br><br>
+                <div class="field">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message"></textarea>
+                    <p class="error" id="message-error"></p>
+                </div>
 
                 <button type="submit">Send</button>
+                <p id="form-status" role="status"></p>
             </form>
         </section>
 
@@ -102,19 +105,57 @@
         <p>&copy; 2026 Oralbekuly Aibol</p>
     </footer>
     <script>
-        const btn = document.getElementById('theme-toggle');
-        const saved = localStorage.getItem('theme');
-        if (saved) {
-            document.documentElement.setAttribute('data-theme', saved);
-            }
+    const html = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
 
-        btn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
+    btn.addEventListener('click', () => {
+        html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
 
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        });
-    </script>
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const name = form.elements['name'].value.trim();
+        const email = form.elements['email'].value.trim();
+        const message = form.elements['message'].value.trim();
+
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        const messageError = document.getElementById('message-error');
+        const status = document.getElementById('form-status');
+
+        nameError.textContent = '';
+        emailError.textContent = '';
+        messageError.textContent = '';
+        let isValid = true;
+
+        if (name === '') {
+            nameError.textContent = 'Please enter your name.';
+            isValid = false;
+        }
+
+        if (email === '') {
+            emailError.textContent = 'Please enter your email.';
+            isValid = false;
+        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+            emailError.textContent = 'Email must look like name@example.com.';
+            isValid = false;
+        }
+
+        if (message === '') {
+            messageError.textContent = 'Please write a message.';
+            isValid = false;
+        }
+
+        if (isValid) {
+            status.textContent = 'Thank you! Your message was sent.';
+            form.reset();
+        } else {
+            status.textContent = '';
+        }
+    });
+</script>
 </body>
 </html>
